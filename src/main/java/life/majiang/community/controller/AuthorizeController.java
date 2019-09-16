@@ -1,9 +1,9 @@
 package life.majiang.community.controller;
 
 
+import life.majiang.community.dao.UserDao;
 import life.majiang.community.dto.AccessTokenDto;
 import life.majiang.community.dto.GithubUser;
-import life.majiang.community.mapper.UserMapper;
 import life.majiang.community.model.User;
 import life.majiang.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 @Controller
-public class AuthorizeController {
+    public class AuthorizeController {
+
+    @Autowired
+    private UserDao dao;
 
     @Autowired
     private GithubProvider githubProvider;
-
-    @Autowired
-     private  UserMapper mapper;
 
     @Value("${github.client.id}")
     private String client_id;
@@ -40,9 +40,9 @@ public class AuthorizeController {
         AccessTokenDto dto = new AccessTokenDto();
         dto.setCode(code);
         dto.setState(state);
-        dto.setClient_id("2c83d2aa748fdeb32230");
-        dto.setClient_secret("932bfbae5870eeec5d85d318496692aca11f316f");
-        dto.setRedirect_uri("http://localhost:8887/callback");
+        dto.setClient_id(client_id);
+        dto.setClient_secret(client_secret);
+        dto.setRedirect_uri(redirect_uri);
         String accessToken = githubProvider.getAccessToken(dto);
         GithubUser user = githubProvider.getUser(accessToken);
        if(user != null){
@@ -55,8 +55,7 @@ public class AuthorizeController {
            u.setToken(accessToken);
            u.setGmt_create(System.currentTimeMillis());
            u.setGmt_modified(u.getGmt_create());
-
-          mapper.insertUser(u);
+          dao.save(u);
            return "redirect:/";
        }else{
            //重新登录

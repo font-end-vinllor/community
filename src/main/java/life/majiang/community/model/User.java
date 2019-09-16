@@ -1,23 +1,29 @@
 package life.majiang.community.model;
 
+import javax.persistence.*;
+
 /**
  *   登录用户对象
  */
-
+@Entity
+@Table(name = "user")
 public class User {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long id;
     private String account_id;
     private String name;
     private String token;
     private Long gmt_create;
     private Long gmt_modified;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

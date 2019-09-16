@@ -1,0 +1,24 @@
+spring:
+  thymeleaf:
+    cache: false
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/community
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      username: root
+      password: community
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: mysql
+
+github:
+  client:
+    id: 2c83d2aa748fdeb32230
+    secret: 932bfbae5870eeec5d85d318496692aca11f316f
+redirect_uri: http://localhost:8887/callback
+server:
+  port: 8887

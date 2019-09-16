@@ -19,4 +19,22 @@
 [VP](https://www.visul-paradigm.com)
 
 [GIT](https://git-scm.com/domnload)
+
+
+sql script
+```sql
+-- auto-generated definition
+create table user
+(
+    user_id      bigint auto_increment
+        primary key,
+    account_id   varchar(255) null,
+    gmt_create   bigint       null,
+    gmt_modified bigint       null,
+    name         varchar(255) null,
+    token        varchar(255) null
+)
+    engine = MyISAM;
+
+```
 >>>>>>> origin/master

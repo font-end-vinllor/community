@@ -1,0 +1,16 @@
+body{
+    background-color: #efefef;
+}
+
+.publish{
+    margin: 30px;
+    background-color: white;
+    padding: 30px;
+}
+.form-tab{
+    margin:10px;
+}
+.btn-publish{
+    float: right;
+    margin:10px;
+}

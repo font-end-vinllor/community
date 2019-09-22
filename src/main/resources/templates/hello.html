@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/publish.css" th:href="@{/css/publish.css}"/>
    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap-theme.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.css}"/>
 
@@ -44,6 +45,49 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<!--问题列表-->
+    <div class="publish">
+      <div class="row">
+         <div class="col-lg-9 col-md-9 col-sm-12 ">
+          <h2>  <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+           发现</h2>
+           <hr/>
+      <div class="media" th:each="question:${questions}" >
+        <div class="media-left media-middle">
+          <a href="#">
+            <img class="media-object" th:src="${question.user.avatar_url}">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading" th:text="${question.title}"></h4>
+          <span th:text="${question.content}"></span><br/>
+          <span th:text="${question.tags}"></span> <span th:text="${question.common}"></span>个回复 - <span th:text="${question.look}"></span> 次浏览 - <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">分钟前</span>
+        </div>
+      </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+          </div>
+         <div class="col-lg-3 col-md-3 col-sm-12" ></div>
+      </div>
+    </div>
+
 <script type="application/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" />
 </body>
 </html>

@@ -50,9 +50,10 @@ import java.util.UUID;
            response.addCookie(new Cookie("token",accessToken));
 //           将user保存在数据库
            User u = new User();
+           u.setAvatar_url(user.getAvatar_url());
            u.setAccount_id(UUID.randomUUID().toString());
-           u.setName(user.getName());
            u.setToken(accessToken);
+           u.setName(user.getName());
            u.setGmt_create(System.currentTimeMillis());
            u.setGmt_modified(u.getGmt_create());
           dao.save(u);

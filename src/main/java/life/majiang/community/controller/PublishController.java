@@ -42,21 +42,23 @@ public class PublishController {
      * @return
      */
     @PostMapping
-    public String goPublish(@RequestParam(name = "title",required = false) String title,
-                            @RequestParam(name = "content",required = false) String content,
-                            @RequestParam(name = "tags",required = false) String tags,
+    public String goPublish(@RequestParam(name = "title", required = false) String title,
+                            @RequestParam(name = "content", required = false) String content,
+                            @RequestParam(name = "tags", required = false) String tags,
                             Model model,
                             HttpServletRequest request) {
 
 
         User user = null;
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies
-        ) {
-            if (cookie.getName().equals("token")) {
-                String value = cookie.getValue();
-                user = userDao.findByToken(value);
-                break;
+        if (cookies != null) {
+            for (Cookie cookie : cookies
+            ) {
+                if (cookie.getName().equals("token")) {
+                    String value = cookie.getValue();
+                    user = userDao.findByToken(value);
+                    break;
+                }
             }
         }
         if (user == null) {
@@ -71,11 +73,11 @@ public class PublishController {
         question.setTitle(title);
         question.setContent(content);
         question.setTags(tags);
-        question.setActor(user.getId());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModify(question.getGmtCreate());
+        question.setUser(user);
         questionDao.save(question);
 
-        return "hello";
+        return "redirect:/";
     }
 }

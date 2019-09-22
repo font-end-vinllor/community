@@ -57,7 +57,7 @@
              <label for="title">问题标题(简单扼要):</label>
              <input type="text" class="form-control" id="title" placeholder="问题标题....." th:value="${title}" name="title">
            </div>
-           <textarea class="form-control" rows="6" name="content" th:value="${content}"></textarea>
+           <textarea class="form-control" rows="6" name="content" th:text="${content}"></textarea>
            <div class="form-group form-tab">
                <label for="tab">添加标签:</label>
                <input type="tag" class="form-control" id="tag" name="tags" placeholder="输入标签,以,号分隔" th:value="${tags}">
